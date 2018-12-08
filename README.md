@@ -1,2 +1,2 @@
 # weather-API
-soon
+Applciation shows current weather according to location or typed city, country etc.

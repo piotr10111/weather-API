@@ -1,0 +1,10 @@
+$primary-color: rgb(67, 155, 107);
+body {
+    background: $primary-color;
+}
+#app {
+    background: green;
+    width: 50px;
+    height: 100px;
+    transform: rotate(40deg);
+}

@@ -1,21 +1,24 @@
 /* eslint no-console: 0 */
-
 import './scss/style.scss';
 
-console.log(`I'm a silly entry point`);
-const arr = [ 1, 2, 3 ];
-const iAmJavascriptES6 = () => console.log(...arr);
-window.iAmJavascriptES6 = iAmJavascriptES6;
+const api = `http://api.openweathermap.org/data/2.5/weather?q=`;
+const apiKey = `&APPID=e406ba4d8d643764cc64a2f082a84602`;
+const units = `&units=metric`;
 
-if( window.innerWidth <= 850 ) {
-    const hide = function hide() {
-        const ul = document.querySelector( '.nav__list' );
-        ul.classList.toggle( 'nav__list--block' );
+const loadWeather = () => {
+    const input = document.querySelector( '.search__input' );
+    const url = `${api}${input.value}${units}${apiKey}`;
 
-        const button = document.querySelector( '.header__button' );
-        button.classList.toggle( 'header__button--close' );
-    };
-
-    const links = Array.from( document.querySelectorAll( '.clicked' ) );
-    links.forEach( (link) => link.addEventListener( 'click', hide ) );
+    fetch( url )
+        .then( res => res.json() )
+        .then( data => {
+            console.log( data );
+        } )
 }
+
+const setup = () => {
+    const button = document.getElementById( 'search__button' );
+    button.addEventListener( 'click', loadWeather );
+}
+
+setup();

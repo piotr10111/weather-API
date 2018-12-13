@@ -2,23 +2,33 @@
 import './scss/style.scss';
 
 const api = `http://api.openweathermap.org/data/2.5/weather?q=`;
-const apiKey = `&APPID=e406ba4d8d643764cc64a2f082a84602`;
+const apiKey = `&APPID=254f5cfa909ce84a6c0a52b555b0ce5c`;
 const units = `&units=metric`;
 
 const loadWeather = () => {
-    const input = document.querySelector( '.search__input' );
-    const url = `${api}${input.value}${units}${apiKey}`;
+    const input = document.querySelector( '.search__input' ).value;
+    const url = `${api}${input}${units}${apiKey}`;
+    console.log( url );
 
     fetch( url )
-        .then( res => res.json() )
+        .then( res => {
+            res.json()
+
+            if ( !res.ok ) {
+                throw Error( res.statusText );
+            }
+        } )
         .then( data => {
             console.log( data );
         } )
+        .catch( error => {
+            console.log(error);
+        });
 }
 
 const setup = () => {
     const button = document.getElementById( 'search__button' );
-    button.addEventListener( 'click', loadWeather );
+    if (button ) { button.addEventListener( 'click', loadWeather ); }
 }
 
 setup();

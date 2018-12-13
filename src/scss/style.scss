@@ -1,5 +1,3 @@
-@import 'form';
-
 html{
     margin: 0;
 	padding: 0;
@@ -21,3 +19,5 @@ body {
      justify-content: center;
      margin: 0 auto;
  }
+
+ @import 'form';

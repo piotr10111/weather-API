@@ -32,6 +32,7 @@ const setup = () => {
     button.addEventListener('click', event => {
       event.preventDefault();
       loadWeather();
+      
     });
   }
 };
